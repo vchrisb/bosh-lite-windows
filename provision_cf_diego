@@ -1,0 +1,20 @@
+#!/bin/sh 
+
+bosh upload release https://bosh.io/d/github.com/cloudfoundry/garden-runc-release
+bosh upload release https://bosh.io/d/github.com/cloudfoundry/cflinuxfs2-rootfs-release
+
+# diego release
+cd ~/diego-release 
+./scripts/generate-bosh-lite-manifests
+bosh deployment ~/diego-release/bosh-lite/deployments/diego.yml
+bosh -n create release --force
+bosh -n upload release
+bosh -n deploy --recreate
+
+# diego as default
+cd ~/workspace/cf-release
+./generate-bosh-lite-dev-manifest /vagrant/diego-default.yml
+bosh deployment bosh-lite/deployments/cf.yml
+bosh -n create release --force
+bosh -n upload release
+bosh -n deploy

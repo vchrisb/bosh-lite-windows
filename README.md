@@ -80,6 +80,8 @@ CA certificate that can be used with the BOSH CLI is saved in `ca/certs/ca.crt`.
 
 ## Deploy Cloud Foundry
 
+### Warden
+
 See [deploying Cloud Foundry documentation](http://docs.cloudfoundry.org/deploying/boshlite/deploy_cf_boshlite.html) for detailed instructions.  
 [CF Release](https://github.com/cloudfoundry/cf-release) is checked out  as `~/cf-release`.
 
@@ -88,10 +90,21 @@ Run follwing command to delpoy Cloud Foundry:
     ```
     $ ~/bosh-lite/bin/provision_cf
     ```
-	
+
+### Diego
+
+[Diego with bosh-lit](https://github.com/cloudfoundry/diego-release/blob/7a1641d4325dd2faffa9e798d474618ec5dfc823/examples/bosh-lite/README.md)
+
+    ```
+    $ ~/bosh-lite/bin/provision_cf
+	$ /vagrant/provision_cf_diego
+	$ cf login --skip-ssl-validation -a api.bosh-lite.com -u admin -p admin
+	$ cf enable-feature-flag diego_docker
+    ```
+
 ## Connect to Cloud Foundry
 	
-#### Add a route entry to your local routing table to enable access from your host to Cloud Foundry
+#### Add a route entry to your local routing table to enable access from your Windows host to Cloud Foundry
 
 Launch an evelated shell.
 

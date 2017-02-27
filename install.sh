@@ -11,9 +11,11 @@ sudo apt-get -y install git unzip curl
 # clone repositories
 git clone https://github.com/cloudfoundry/bosh-lite.git ~/bosh-lite
 git clone https://github.com/cloudfoundry/cf-release.git ~/cf-release
+git clone https://github.com/cloudfoundry/diego-release.git ~/diego-release
 
 # update the subprojects
 ~/cf-release/scripts/update
+cd ~/diego-release && ./scripts/update
 
 # install & configure rbenv
 sudo apt-get install rbenv
