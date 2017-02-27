@@ -23,12 +23,6 @@ This readme walks through deploying Cloud Foundry with BOSH Lite. BOSH and BOSH 
 
 ### Install and Boot a Virtual Machine
 
-Installation instructions for different Vagrant providers:
-
-* VirtualBox (below)
-
-#### Using the VirtualBox Provider
-
 1. Make sure your machine has at least 8GB RAM, and 100GB free disk space. Smaller configurations may work.
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
@@ -50,14 +44,12 @@ Installation instructions for different Vagrant providers:
 
 1. When you are not using your VM we recommmend to *Pause* the VM from the VirtualBox UI (or use `vagrant suspend`), so that VM can be later simply resumed after your machine goes to sleep or gets rebooted. Otherwise, your VM will be halted by the OS and you will have to recreate previously deployed software.
 
-1. Connect to BOSH Director VM
-
-Tge BOSH CLI is not compatible with Windows. Therefore we need to connect to the director VM and work from there:
+1. Connect to BOSH Director VM. The BOSH CLI is not compatible with Windows. Therefore we need to connect to the director VM and work from there:
 
     ```
     $ vagrant ssh
     ```
-
+	
 1. Target the BOSH Director. When prompted to log in, use admin/admin.
 
     ```
@@ -81,7 +73,7 @@ The local VMs (virtualbox, vmware providers) will be accessible at `192.168.50.4
     # override.vm.network :private_network, ip: '192.168.59.4', id: :local
   end
 ```
-
+	
 ### CA certificate
 
 CA certificate that can be used with the BOSH CLI is saved in `ca/certs/ca.crt`. It's created for `192.168.50.4` and `*.sslip.io`.
@@ -96,24 +88,24 @@ Run follwing command to delpoy Cloud Foundry:
     ```
     $ ~/bosh-lite/bin/provision_cf
     ```
-
+	
 ## Connect to Cloud Foundry
 	
-1. Add a route entry to your local routing table to enable access from your host to Cloud Foundry
+#### Add a route entry to your local routing table to enable access from your host to Cloud Foundry
 
 Launch an evelated shell.
 
     ```
     $ route ADD 10.244.0.0 MASK 255.255.0.0 192.168.50.4
     ```
-
+	
 To make the route persistent across reboot add `-p`.
 
-1. Install Cloud Foundry CLI on your host
+#### Install Cloud Foundry CLI on your host
 
 [Latest Cloud Foundry CLI](https://github.com/cloudfoundry/cli/releases)
 
-1. Connect to Cloud Foundry from your host
+#### Connect to Cloud Foundry from your host
 
     ```
     $ cf login -a api.bosh-lite.com -u admin -p admin --skip-ssl-validation
