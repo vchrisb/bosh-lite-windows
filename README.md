@@ -93,7 +93,7 @@ Run follwing command to delpoy Cloud Foundry:
 
 ### Diego
 
-[Diego with bosh-lit](https://github.com/cloudfoundry/diego-release/blob/7a1641d4325dd2faffa9e798d474618ec5dfc823/examples/bosh-lite/README.md)
+[Diego with bosh-lite](https://github.com/cloudfoundry/diego-release/blob/7a1641d4325dd2faffa9e798d474618ec5dfc823/examples/bosh-lite/README.md)
 
     ```
     $ ~/bosh-lite/bin/provision_cf
