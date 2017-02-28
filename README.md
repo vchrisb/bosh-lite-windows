@@ -87,20 +87,20 @@ See [deploying Cloud Foundry documentation](http://docs.cloudfoundry.org/deployi
 
 Run follwing command to delpoy Cloud Foundry:
 
-    ```
-    $ ~/bosh-lite/bin/provision_cf
-    ```
+```
+$ ~/bosh-lite/bin/provision_cf
+```
 
 ### Diego
 
 [Diego with bosh-lite](https://github.com/cloudfoundry/diego-release/blob/7a1641d4325dd2faffa9e798d474618ec5dfc823/examples/bosh-lite/README.md)
 
-    ```
-    $ ~/bosh-lite/bin/provision_cf
-	$ /vagrant/provision_cf_diego
-	$ cf login --skip-ssl-validation -a api.bosh-lite.com -u admin -p admin
-	$ cf enable-feature-flag diego_docker
-    ```
+```
+$ ~/bosh-lite/bin/provision_cf
+$ /vagrant/provision_cf_diego
+$ cf login --skip-ssl-validation -a api.bosh-lite.com -u admin -p admin
+$ cf enable-feature-flag diego_docker
+```
 
 ## Connect to Cloud Foundry
 	
@@ -108,9 +108,9 @@ Run follwing command to delpoy Cloud Foundry:
 
 Launch an evelated shell.
 
-    ```
-    $ route ADD 10.244.0.0 MASK 255.255.0.0 192.168.50.4
-    ```
+```
+$ route ADD 10.244.0.0 MASK 255.255.0.0 192.168.50.4
+```
 	
 To make the route persistent across reboot add `-p`.
 
@@ -120,9 +120,9 @@ To make the route persistent across reboot add `-p`.
 
 #### Connect to Cloud Foundry from your host
 
-    ```
-    $ cf login -a api.bosh-lite.com -u admin -p admin --skip-ssl-validation
-    ```
+```
+$ cf login -a api.bosh-lite.com -u admin -p admin --skip-ssl-validation
+```
 	
 ## Troubleshooting
 
