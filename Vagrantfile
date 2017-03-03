@@ -7,5 +7,5 @@ Vagrant.configure('2') do |config|
     # override.vm.network :private_network, ip: '192.168.59.4', id: :local
   end
   config.vm.provision "install", type: "shell", path: "install.sh", privileged: false 
-  
+  config.vm.provision "bui", type: "shell", path: "bui.sh", privileged: false 
 end

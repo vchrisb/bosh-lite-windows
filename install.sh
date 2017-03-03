@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/usr/bin/env bash
 
 set -e
 
@@ -19,11 +19,15 @@ cd ~/diego-release && ./scripts/update
 
 # install & configure rbenv
 sudo apt-get install rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-source ~/.bashrc
 rbenv install 2.4.0
 rbenv global 2.4.0
+source ~/.bashrc
+
+#fix .gem permissions
+sudo chown vagrant:vagrant ~/.gem
 
 # install ruby dependencies
 gem install bundler
@@ -38,10 +42,4 @@ sudo mv spiff /usr/local/bin/
 # modify provision_cf for in VM execution vs. Vagrant
 sed -i.bak "s/ip=\$(get_ip_from_vagrant_ssh_config)/ip=\$(ifconfig | grep addr:192 | awk '{print \$2}' | cut -d: -f2)/g" ~/bosh-lite/bin/provision_cf
 
-# status of director services
-sudo /var/vcap/bosh/bin/monit summary
-
 set +x # stop showing commands
-
-echo "Login into VM as user 'vagrant'"
-echo "start CF deployment with '~/bosh-lite/bin/provision_cf'"
