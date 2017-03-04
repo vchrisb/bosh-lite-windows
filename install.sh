@@ -22,10 +22,12 @@ sudo apt-get install rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-exec $SHELL
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 rbenv install 2.4.0
 rbenv global 2.4.0
-source ~/.bashrc
 
 # install ruby dependencies with rbenv
 gem install bundler
