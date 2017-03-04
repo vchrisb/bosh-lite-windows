@@ -8,13 +8,13 @@ cd ~/diego-release
 ./scripts/generate-bosh-lite-manifests
 bosh deployment ~/diego-release/bosh-lite/deployments/diego.yml
 bosh -n create release --force
-bosh -n upload release
-bosh -n deploy --recreate
+bosh -n -u admin -p admin upload release
+bosh -n -u admin -p admin deploy --recreate
 
 # diego as default
-cd ~/workspace/cf-release
-./generate-bosh-lite-dev-manifest /vagrant/diego-default.yml
+cd ~/cf-release
+./scripts/generate-bosh-lite-dev-manifest /vagrant/diego-default.yml
 bosh deployment bosh-lite/deployments/cf.yml
 bosh -n create release --force
-bosh -n upload release
-bosh -n deploy
+bosh -n -u admin -p admin upload release
+bosh -n -u admin -p admin deploy
