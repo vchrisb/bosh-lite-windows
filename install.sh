@@ -13,24 +13,24 @@ git clone https://github.com/cloudfoundry/bosh-lite.git ~/bosh-lite
 git clone https://github.com/cloudfoundry/cf-release.git ~/cf-release
 git clone https://github.com/cloudfoundry/diego-release.git ~/diego-release
 
+#fix .gem permissions
+sudo chown -R vagrant:vagrant ~/.gem
+sudo gem uninstall bosh_cli
+
 # install & configure rbenv
 sudo apt-get install rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+exec $SHELL
 rbenv install 2.4.0
 rbenv global 2.4.0
 source ~/.bashrc
 
-#fix .gem permissions
-sudo chown -R vagrant:vagrant ~/.gem
-sudo gem uninstall bosh_cli
-
 # install ruby dependencies with rbenv
 gem install bundler
-source ~/.bashrc
+rbenv rehash
 bundle install --gemfile /home/vagrant/cf-release/Gemfile
-
 
 # install spiff
 wget -q https://github.com/cloudfoundry-incubator/spiff/releases/download/v1.0.8/spiff_linux_amd64.zip

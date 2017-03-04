@@ -9,7 +9,7 @@ cd /tmp
 wget -N -nv https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz		
 sudo tar -C /usr/local -xzf go1.8.linux-amd64.tar.gz
 mkdir -p ~/go/{bin,src,pkg}
-export PATH="$PATH:/usr/local/go/bin"
+mkdir ~/tmp
 echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh
 echo 'export PATH=$PATH:$(go env GOPATH)/bin' | sudo tee --append  /etc/profile.d/golang.sh
 echo 'export GOPATH=$(go env GOPATH)' | sudo tee --append  /etc/profile.d/golang.sh
