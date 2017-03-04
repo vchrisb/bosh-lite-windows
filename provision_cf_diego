@@ -1,7 +1,7 @@
 #!/bin/sh 
 
-bosh upload release https://bosh.io/d/github.com/cloudfoundry/garden-runc-release
-bosh upload release https://bosh.io/d/github.com/cloudfoundry/cflinuxfs2-rootfs-release
+bosh -n -u admin -p admin upload release https://bosh.io/d/github.com/cloudfoundry/garden-runc-release
+bosh -n -u admin -p admin upload release https://bosh.io/d/github.com/cloudfoundry/cflinuxfs2-rootfs-release
 
 # diego release
 cd ~/diego-release 

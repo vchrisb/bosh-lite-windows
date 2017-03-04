@@ -64,8 +64,9 @@ HERE
 
 #reload monit
 sudo /var/vcap/bosh/bin/monit reload
+sleep 3
 sudo /var/vcap/bosh/bin/monit start bui
-sleep 15
+sleep 5
 
 set +x # stop showing commands
 
