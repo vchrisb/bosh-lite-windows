@@ -1,10 +1,14 @@
 #!/bin/sh 
+set -e
+
+set -x # show the commands we are running
 
 bosh -n -u admin -p admin upload release https://bosh.io/d/github.com/cloudfoundry/garden-runc-release
 bosh -n -u admin -p admin upload release https://bosh.io/d/github.com/cloudfoundry/cflinuxfs2-rootfs-release
 
 # diego release
-cd ~/diego-release 
+cd ~/diego-release
+./scripts/update
 ./scripts/generate-bosh-lite-manifests
 bosh deployment ~/diego-release/bosh-lite/deployments/diego.yml
 bosh -n create release --force
@@ -18,3 +22,5 @@ bosh deployment bosh-lite/deployments/cf.yml
 bosh -n create release --force
 bosh -n -u admin -p admin upload release
 bosh -n -u admin -p admin deploy
+bosh -n -u admin -p admin deployments
+set +x # stop showing commands
